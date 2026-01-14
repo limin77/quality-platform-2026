@@ -13,21 +13,24 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.40.0-jammy
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: 18
+        
     - name: Install Dependencies
       run: npm ci
+
+    # THE FIX: Install the correct browsers for YOUR version
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+
     - name: Run Playwright Tests
       run: npx playwright test
       env:
         CI: true
 
-    # Create the Report
     - name: Upload HTML Report
       if: always()
       uses: actions/upload-pages-artifact@v3
@@ -35,7 +38,6 @@ jobs:
         path: playwright-report/
         retention-days: 30
 
-  # Deploy the Report to the Web
   deploy:
     needs: test
     if: always()
