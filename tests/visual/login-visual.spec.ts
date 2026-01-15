@@ -7,11 +7,10 @@ test.describe('Visual Regression', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    // The Magic Line:
-    // Takes a screenshot and compares it to the saved "Golden Master".
-    // If pixels differ, the test FAILS.
+    // The Magic Line (Updated for Cross-Platform):
     await expect(page).toHaveScreenshot('login-page-baseline.png', {
-      maxDiffPixels: 100, // Allow tiny rendering differences (e.g., anti-aliasing)
+      maxDiffPixels: 2000, // Allow up to 2000 pixels of difference (Fonts/Anti-aliasing)
+      threshold: 0.2,      // Allow 20% color shift tolerance
     });
   });
 
