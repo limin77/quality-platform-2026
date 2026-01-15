@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../src/pages/LoginPage';
 
 test.describe('Visual Regression', () => {
-  
   test('Login Page should match the Golden Master', async ({ page }) => {
     // THE CODE FIX:
     // If we are on the CI Server (Linux), we SKIP this test automatically.
@@ -15,8 +14,7 @@ test.describe('Visual Regression', () => {
 
     // This will now only run on your machine, where it passes.
     await expect(page).toHaveScreenshot('login-page-baseline.png', {
-      maxDiffPixels: 100, 
+      maxDiffPixels: 100,
     });
   });
-
 });

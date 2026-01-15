@@ -3,7 +3,6 @@ import { LoginPage } from '../../src/pages/LoginPage';
 import { CheckoutPage } from '../../src/pages/CheckoutPage';
 
 test.describe('E2E Transaction Flow', () => {
-
   test('User should be able to purchase a Backpack', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const checkoutPage = new CheckoutPage(page);
@@ -19,5 +18,4 @@ test.describe('E2E Transaction Flow', () => {
     await expect(checkoutPage.successMessage).toBeVisible();
     await expect(checkoutPage.successMessage).toHaveText('Thank you for your order!');
   });
-
 });

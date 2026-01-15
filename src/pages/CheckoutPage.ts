@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export class CheckoutPage {
   readonly page: Page;
@@ -29,7 +29,7 @@ export class CheckoutPage {
   async performCheckout(firstName: string, lastName: string, zip: string) {
     // 1. Add Item to Cart
     await this.addToCartButton.click();
-    
+
     // 2. Go to Cart & Start Checkout
     await this.cartIcon.click();
     await this.checkoutButton.click();

@@ -3,18 +3,35 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:visual": "npx playwright test --grep @visual",
+    "test:e2e": "npx playwright test tests/e2e",
+    "test:bdd": "npx bddgen && npx playwright test",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "format": "npx prettier --write .",
+    "prepare": "husky"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@faker-js/faker": "^10.2.0",
     "@playwright/test": "^1.57.0",
     "@types/node": "^25.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
     "allure-playwright": "^3.4.4",
     "dotenv": "^17.2.3",
     "eslint": "^9.39.2",
-    "prettier": "^3.7.4"
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.0.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.0",
+    "typescript-eslint": "^8.53.0"
   }
 }

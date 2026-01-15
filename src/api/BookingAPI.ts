@@ -11,9 +11,9 @@ export class BookingAPI {
   async createToken() {
     const response = await this.request.post('https://restful-booker.herokuapp.com/auth', {
       data: {
-        username: "admin",
-        password: "password123"
-      }
+        username: 'admin',
+        password: 'password123',
+      },
     });
     expect(response.status()).toBe(200);
     const body = await response.json();
@@ -29,11 +29,11 @@ export class BookingAPI {
         totalprice: 1000,
         depositpaid: true,
         bookingdates: {
-          checkin: "2026-01-01",
-          checkout: "2026-02-01"
+          checkin: '2026-01-01',
+          checkout: '2026-02-01',
         },
-        additionalneeds: "Breakfast"
-      }
+        additionalneeds: 'Breakfast',
+      },
     });
     expect(response.status()).toBe(200);
     return await response.json();
