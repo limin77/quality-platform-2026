@@ -33,5 +33,9 @@
     "husky": "^9.1.7",
     "prettier": "^3.8.0",
     "typescript-eslint": "^8.53.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^12.5.0",
+    "playwright-bdd": "^8.4.2"
   }
 }
