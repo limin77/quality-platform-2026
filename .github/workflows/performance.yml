@@ -1,0 +1,19 @@
+name: "Performance Load Test"
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Allows you to click a button to run it manually
+
+jobs:
+  load-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run k6 Cloud Test
+        # We use the official Docker action for k6
+        uses: grafana/k6-action@v0.3.0
+        with:
+          filename: tests/performance/load-test.js
