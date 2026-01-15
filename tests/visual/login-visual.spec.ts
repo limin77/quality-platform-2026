@@ -7,10 +7,12 @@ test.describe('Visual Regression', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    // The Magic Line (Updated for Cross-Platform):
-    await expect(page).toHaveScreenshot('login-page-baseline.png', {
-      maxDiffPixels: 2000, // Allow up to 2000 pixels of difference (Fonts/Anti-aliasing)
-      threshold: 0.2,      // Allow 20% color shift tolerance
+    // FIX: We removed the hardcoded filename string.
+    // Playwright will now automatically append the OS to the filename.
+    // Windows -> '...-chromium-win32.png'
+    // Linux   -> '...-chromium-linux.png'
+    await expect(page).toHaveScreenshot({
+      maxDiffPixels: 100, // Strict, but allows for tiny rendering noise
     });
   });
 
