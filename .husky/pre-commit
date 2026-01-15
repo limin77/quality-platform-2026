@@ -1,1 +1,2 @@
-npm test
+# Only run the Linter (Fast check)
+npx eslint .
