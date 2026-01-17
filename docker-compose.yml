@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  e2e-tests:
+    build: .
+    volumes:
+      # Map your local folders to the container so you can see reports/snapshots instantly
+      - ./tests:/app/tests
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    environment:
+      - CI=true
+    # This command runs the tests
+    command: npx playwright test
