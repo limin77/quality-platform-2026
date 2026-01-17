@@ -11,7 +11,9 @@
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "format": "npx prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "report:allure": "allure generate ./allure-results -o ./allure-report --clean",
+    "view:allure": "allure open ./allure-report"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +26,8 @@
     "@types/node": "^25.0.8",
     "@typescript-eslint/eslint-plugin": "^8.53.0",
     "@typescript-eslint/parser": "^8.53.0",
-    "allure-playwright": "^3.4.4",
+    "allure-commandline": "^2.36.0",
+    "allure-playwright": "^3.4.5",
     "dotenv": "^17.2.3",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",

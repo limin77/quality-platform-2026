@@ -17,8 +17,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
-
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: [
+    ['html'], // Keep the standard report
+    ['allure-playwright'], // Add the Enterprise report
+  ],
   use: {
     trace: 'on-first-retry',
   },
