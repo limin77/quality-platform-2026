@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../src/pages/LoginPage';
 
-// 1. Define the Data (The "Inputs")
-// In a real company, this might come from a JSON file or a Database
+// 1. Define the Data
 const testData = [
   {
     role: 'Standard User',
@@ -27,25 +26,21 @@ const testData = [
 ];
 
 test.describe('Data-Driven Login Security', () => {
-  // 2. The Loop (The "Engine")
-  // We iterate through every item in 'testData' and create a dynamic test for it
   for (const data of testData) {
     test(`Security Check: ${data.role} should handled correctly`, async ({ page }) => {
       const loginPage = new LoginPage(page);
       await loginPage.goto();
-
-      // Act
       await loginPage.login(data.username, data.password);
 
-      // Assert (Conditional Logic)
       if (data.shouldLogin) {
-        // Scenario A: Expect Success
-        await expect(page).toHaveURL(/inventory.html/);
+        // ❌ INTENTIONAL FAILURE:
+        // We expect the title to be "WRONG", but the actual page says "Swag Labs".
+        // This will FAIL, turning the Pipeline RED, and creating the Bug Report Ticket.
+        await expect(page).toHaveTitle('WRONG TITLE TO TRIGGER BUG REPORT');
       } else {
-        // Scenario B: Expect Failure & Check Error Message
         const errorLocator = page.locator('[data-test="error"]');
         await expect(errorLocator).toBeVisible();
-        await expect(errorLocator).toContainText(data.errorMessage!); // '!' tells TS we know it exists
+        await expect(errorLocator).toContainText(data.errorMessage!);
       }
     });
   }
